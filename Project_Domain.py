@@ -128,3 +128,93 @@ def game_statistics(player1, player2):
     # Read the CSV file into a Pandas dataframe and return it
     df = pd.read_csv(file_name)
     return df'''
+
+'''def admin_username_password(name):
+    name_lst = list(name)
+    popped = name_lst.pop()
+    username = name_lst[0] + popped + random.choice(name_lst) + random.choice(numbers)
+    password = random.choice(alphabet) + random.choice(numbers) + random.choice(alphabet) + random.choice(
+        random_chars) + random.choice(alphabet) + random.choice(numbers)
+    return username, password'''
+
+def delete_word():
+    """
+    This function will delete a word from the codeword.
+    """
+    word = input("Which word do you want to delete: ")
+    while word.lower() != "adidas" or word.lower() != "puma" or word.lower() != "skechers" or word.lower() != "nike" or word.lower() != "reebok":
+        word = input("Enter a word that's in the codeword")
+    if word.lower() == "adidas":
+        codeword[0][1], codeword[0][2], codeword[0][3], codeword[0][4], codeword[0][5], codeword[0][6] = "#", "#", "#", "#", "#", "#"
+    elif word.lower() == "puma":
+        codeword[1][0], codeword[2][0], codeword[3][0], codeword[4][0] = "#", "#", "#", "#"
+    elif word.lower() == "skechers":
+        codeword[0][6], codeword[1][6], codeword[2][6], codeword[3][6], codeword[4][6], codeword[5][6], codeword[6][6], codeword[7][6] = "#", "#", "#", "#", "#", "#", "#", "#"
+    elif word.lower() == "nike":
+        codeword[4][8], codeword[5][8], codeword[6][8], codeword[7][8] = "#", "#", "#", "#"
+    elif word.lower() == "reebok":
+        codeword[8][0], codeword[8][1], codeword[8][2], codeword[8][3], codeword[8][4], codeword[8][5] = "#", "#", "#", "#", "#", "#"
+
+
+def new_puzzle(codeword, player_codeword, answer_key, player_key):
+    codeword = [
+        # Random 7 words - crossword contains all 26 letter of the alphabet
+        # words = abducting, squawkers, blackjack, conjugate, jackknife, equinoxes, whizzbang
+        ["A", "B", "D", "U", "C", "T", "I", "N", "G"],
+        ["S", "Q", "U", "A", "W", "K", "E", "R", "S"],
+        ["B", "L", "A", "C", "K", "J", "A", "C", "K"],
+        ["#", "#", "#", "#", "#", "#", "#", "#", "#"],
+        ["C", "O", "N", "J", "U", "G", "A", "T", "E"],
+        ["J", "A", "C", "K", "K", "N", "I", "F", "E"],
+        ["E", "Q", "U", "I", "N", "O", "X", "E", "S"],
+        ["#", "#", "#", "#", "#", "#", "#", "#", "#"],
+        ["W", "H", "I", "Z", "Z", "B", "A", "N", "G"]
+    ]
+
+    answer_key = [
+        # contains all letters in alphabet
+        ["5", "A"], ["9", "B"], ["12", "C"], ["15", "D"], ["21", "E"], ["26", "F"], ["19", "G"], ["14", "H"], ["6", "I"],
+        ["13", "J"], ["23", "K"], ["8", "L"], ["17", "M"], ["3", "N"], ["11", "O"], ["4", "P"], ["22", "Q"],
+        ["18", "R"], ["1", "S"], ["24", "T"], ["10", "U"], ["25", "V"], ["16", "W"], ["2", "X"], ["20", "Y"],
+        ["7", "Z"],
+    ]
+
+    player_codeword = [
+        # words = abducting, squawkers, blackjack, conjugate, jackknife, equinoxes, whizzbang
+        ["5", "B", "D", "U", "12", "24", "6", " 3", "19"],
+        ["S", "Q", "U", "5", " W", "23", "21", "18", "S"],
+        ["B", "L", "5", "12", "23", "J", "5", "12", "23"],
+        ["#", "#", "#", "#", " #", " #", "#", " #", " #"],
+        ["12", "O", "3", "J", "U", "19", "5", "24", "21"],
+        ["J", "5", "12", "K", "23", "3", "6", " F", "21"],
+        ["21", "Q", "U", "6", "3", " O", "2", " E", " S"],
+        ["#", " #", "#", "#", "#", " #", "#", " #", " #"],
+        ["W", " H", "6", "Z", "7", " B", "5", " 3", "19"]
+    ]
+
+    player_key = [
+        # contains all letters in alphabet
+        ["5", "A"], ["9", "B"], ["12", "C"], ["15", "D"], ["21", "E"], ["26", "F"], ["19", "G"], ["14", "H"], ["6", "I"],
+        ["13", "J"], ["23", "K"], ["8", "L"], ["17", "M"], ["3", "N"], ["11", "O"], ["4", "P"], ["22", "Q"],
+        ["18", "R"], ["1", "S"], ["24", "T"], ["10", "U"], ["25", "V"], ["16", "W"], ["2", "X"], ["20", "Y"],
+        ["7", "Z"],
+    ]
+
+def add_word():
+    """
+    This function adds a new word to the codeword
+    """
+    new_word = input("Enter what word you want to add to the codeword: ")
+    new_word = list(new_word.upper())
+    row_location = int(input("What row do you want to put this word?: "))
+    col_location = int(input("What column do you want to put this row?: "))
+    for row in range(len(codeword)):
+        for col in range(len(codeword[row])):
+            if codeword[row][col] == codeword[row_location-1][col_location-1]:
+                if codeword[row][col] == "#":
+                    codeword[row][col] == new_word[0]
+                    print(codeword)
+                    self.admin_menu
+                else:
+                    print("There's already a word in this location")
+                    self.admin_menu
